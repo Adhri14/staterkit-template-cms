@@ -14,6 +14,15 @@ class HandleInertiaRequests extends Middleware
      */
     protected $rootView = 'app';
 
+    public function rootView(Request $request)
+    {
+        $prefix = $request->route()->getPrefix();
+        if($prefix == '/backend' || $prefix == 'backend/'){
+              return $this->rootView = 'app-admin';
+        }
+        return $this->rootView;
+    }
+
     /**
      * Determine the current asset version.
      */

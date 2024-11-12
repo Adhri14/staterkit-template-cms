@@ -1,11 +1,11 @@
 import Td from "@/Components/tables/Td";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { usePage } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 
-export default function LogAdminShow() {
-  const { log_admin, title } = usePage().props;
+export default function LogAdminShow({ log_admin, title }) {
   return (
     <AuthenticatedLayout>
+      <Head title={title} />
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">

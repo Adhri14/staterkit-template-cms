@@ -39,9 +39,9 @@ class Transaction extends Model
         return app(Pipeline::class)
             ->send(Transaction::query())
             ->through([
-                // \App\QueryFilters\SortBy::class,
-                // \App\QueryFilters\SearchTitle::class,
-                // \App\QueryFilters\Trash::class,
+                \App\QueryFilters\SortBy::class,
+                \App\QueryFilters\SearchTitle::class,
+                \App\QueryFilters\Trash::class,
             ])
             ->thenReturn()
             ->paginate($limit);
@@ -52,9 +52,9 @@ class Transaction extends Model
         return app(Pipeline::class)
             ->send(Transaction::query())
             ->through([
-                // \App\QueryFilters\SortBy::class,
-                // \App\QueryFilters\SearchTitle::class,
-                // \App\QueryFilters\Trash::class,
+                \App\QueryFilters\SortBy::class,
+                \App\QueryFilters\SearchTitle::class,
+                \App\QueryFilters\Trash::class,
             ])
             ->thenReturn()
             ->get();

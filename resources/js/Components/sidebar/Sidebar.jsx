@@ -9,7 +9,9 @@ import { icons } from "@/Utils/icons";
 export default function Sidebar() {
     const [menuShow, setMenuShow] = useState('block');
     const [collapseShow, setCollapseShow] = useState('hidden');
-    const { currentPath, navigation: menus } = usePage().props;
+    const { current_path, navigation: menus } = usePage().props;
+
+    console.log("current : ", current_path);
 
     const toggleCollapseShow = (classes, menu) => {
         setCollapseShow(classes);
@@ -102,7 +104,7 @@ export default function Sidebar() {
                                                     </>
                                                 ) : (
                                                     <Link
-                                                        className={`text-blueGray-700 w-full text-left hover:text-blueGray-500 text-sm py-4  px-6 hover:bg-gray-100 hover:border-l-2 hover:border-primary flex items-center duration-150 transition-all ${currentPath === item?.link ? 'bg-gray-100 border-l-2 border-primary flex space-x-2' : ''} ${item?.class || ''}`}
+                                                        className={`text-blueGray-700 w-full text-left hover:text-blueGray-500 text-sm py-4  px-6 hover:bg-gray-100 hover:border-l-2 hover:border-primary flex items-center duration-150 transition-all ${current_path === item?.link ? 'bg-gray-100 border-l-2 border-primary flex space-x-2' : ''} ${item?.class || ''}`}
                                                         href={item?.link}
                                                         method={item?.method}
                                                         as={item?.as}

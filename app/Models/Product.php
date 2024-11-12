@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Pipeline\Pipeline;
 
 class Product extends Model
@@ -23,9 +24,9 @@ class Product extends Model
         return app(Pipeline::class)
             ->send(Product::query())
             ->through([
-                // \App\QueryFilters\SortBy::class,
-                // \App\QueryFilters\SearchTitle::class,
-                // \App\QueryFilters\Trash::class,
+                \App\QueryFilters\SortBy::class,
+                \App\QueryFilters\SearchTitle::class,
+                \App\QueryFilters\Trash::class,
             ])
             ->thenReturn()
             ->paginate($limit);
@@ -36,9 +37,9 @@ class Product extends Model
         return app(Pipeline::class)
             ->send(Product::query())
             ->through([
-                // \App\QueryFilters\SortBy::class,
-                // \App\QueryFilters\SearchTitle::class,
-                // \App\QueryFilters\Trash::class,
+                \App\QueryFilters\SortBy::class,
+                \App\QueryFilters\SearchTitle::class,
+                \App\QueryFilters\Trash::class,
             ])
             ->thenReturn()
             ->get();

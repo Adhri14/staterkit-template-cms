@@ -3,12 +3,15 @@ import Th from "@/Components/tables/Th";
 import Td from "@/Components/tables/Td";
 import SecondaryButton from "@/Components/buttons/SecondaryButton";
 import Pagination from "@/Components/buttons/Pagination";
-import { Link, usePage } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
+import SecondaryLink from "@/Components/buttons/SecondaryLink";
+import { FaEye, FaRotateRight, FaTrashCan } from "react-icons/fa6";
 
 export default function LogAdminIndex() {
     const { title, log_admins, trash } = usePage().props;
     return (
         <AuthenticatedLayout>
+            <Head title={title} />
             <div className="flex flex-wrap mt-4">
                 <div className="w-full mb-12 px-4">
                     <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
@@ -38,7 +41,7 @@ export default function LogAdminIndex() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {log_admins.data.map((log_admin, index) => (
+                                    {log_admins.data.map((log_admin) => (
                                         <tr className="hover:bg-gray-100 cursor-pointer relative py-3 block lg:py-0 lg:table-row border-t lg:border-0" key={log_admin.id}>
                                             <Td>
                                                 <strong className="block lg:hidden">Subject</strong>
@@ -78,29 +81,27 @@ export default function LogAdminIndex() {
                                             <Td>
                                                 {trash ? (
                                                     <div >
-                                                        <SecondaryButton v-tooltip="'Restore'" className="px-3 py-2 bg-green-500 rounded-none rounded-l-md" href={route('log-admin.restore', { log_admin })} method="post" as="button">
-                                                            <i className="fas fa-rotate-right"></i>
-                                                        </SecondaryButton>
+                                                        <SecondaryLink v-tooltip="'Restore'" className="px-3 py-2 bg-green-500 rounded-none rounded-l-md" href={route('log-admin.restore', { log_admin })} method="post" as="button">
+                                                            {/* <i className="fas fa-rotate-right"></i> */}
+                                                            <FaRotateRight />
+                                                        </SecondaryLink>
                                                         <SecondaryButton v-tooltip="'Destroy'" className="px-3 py-2 bg-red-500 rounded-none rounded-r-md" href={route('log-admin.forceDelete', { log_admin })} method="post" as="button">
-                                                            <i className="fas fa-trash-can"></i>
+                                                            <FaTrashCan />
                                                         </SecondaryButton>
                                                     </div>
                                                 ) : (
                                                     <div>
-                                                        <SecondaryButton v-tooltip="'View Detail'" className="px-3 py-2 bg-indigo-500 rounded-none rounded-l-md" href={route('log-admin.show', { log_admin })}>
-                                                            <i className="fas fa-eye"></i>
-                                                        </SecondaryButton>
+                                                        <SecondaryLink v-tooltip="'View Detail'" className="px-3 py-2 bg-indigo-500 rounded-md" href={route('log-admin.show', { log_admin })}>
+                                                            <FaEye />
+                                                        </SecondaryLink>
                                                     </div>
                                                 )}
-
                                             </Td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
-                            <div className="mt-6">
-                                <Pagination links={log_admins.meta.links} />
-                            </div>
+                            <Pagination links={log_admins.meta.links} />
                         </div>
                     </div>
                 </div>

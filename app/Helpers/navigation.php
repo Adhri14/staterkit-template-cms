@@ -345,14 +345,7 @@ function navigation()
                         "icon" => "FaHistory",
                         "submenu" => [],
                         "method"=> 'get'
-                    ],
-                    [
-                        "title" => "Log User",
-                        "link" => route('log-user.index'),
-                        "icon" => "FaHistory",
-                        "submenu" => [],
-                        "method"=> 'get'
-                    ],
+                    ]
                 ]
             ],
             [
@@ -361,7 +354,7 @@ function navigation()
                 "menus" => [
                     [
                         "title" => "Logout",
-                        "link" => route('logout'),
+                        "link" => route('admin.logout'),
                         "icon" => "FaArrowRightFromBracket",
                         "submenu" => [],
                         "method"=> 'post',

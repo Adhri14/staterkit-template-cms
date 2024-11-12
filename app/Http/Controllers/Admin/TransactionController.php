@@ -23,6 +23,7 @@ class TransactionController extends Controller
         $transactions = TransactionRepository::paginate(20);
         return Inertia::render('Views/transaction/index', [
             'title' => 'Transactions',
+            'trash' => request('trash') == 1 ? true : false,
             'transactions' => TransactionCardResource::collection($transactions),
             'breadcumb' => [
                 [

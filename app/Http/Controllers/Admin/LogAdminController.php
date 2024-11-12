@@ -15,7 +15,7 @@ class LogAdminController extends Controller
     public function index()
     {
         $log_admins = LogAdminRepository::paginate(20);
-        return Inertia::render('Views/log-admin/Index', [
+        return Inertia::render('Views/log-admin/index', [
            'log_admins' => LogAdminResource::collection($log_admins),
            'title' =>  request('trash') ? 'Trash' : 'Log Admin',
            'trash' => request('trash') ?  true : false,
@@ -35,8 +35,8 @@ class LogAdminController extends Controller
     public function show(LogAdmin $log_admin)
     {
         return Inertia::render('Views/log-admin/show', [
-           'log_admin' => LogAdminResource::make($log_admin),
-           'title' =>  request('trash') ? 'Trash' : 'Log Admin',
+           'log_admin' => LogAdminResource::make($log_admin)->resolve(),
+           'title' =>  request('trash') ? 'Trash' : 'Show Log Admin' . $log_admin->admin->name,
            'trash' => request('trash') ?  true : false,
            'breadcumb' => [
              [
